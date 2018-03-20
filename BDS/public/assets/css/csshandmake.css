@@ -1,0 +1,141 @@
+body{
+	font-family:'Roboto',sans-serif;
+}
+*{
+	padding: 0;
+	margin: 0;
+}
+.title-post{
+	padding-top:8px;
+	background: #4d9eb6;
+	font-size: 17px;
+	font-weight: bold;
+	margin: 0;
+    padding-bottom: 5px;
+    color: white;
+}
+ul li{
+	list-style: none;
+}
+.dark{
+	margin-top: 30px;
+}
+.outstanding-project{
+	float:left;
+	padding: 0;
+	margin-bottom: 20px;
+}
+.beside{
+	float: right;
+}
+.avatar-post{
+	float:left;
+}
+.description-post{
+	float:right;
+	padding-top: 13px;
+}
+.article-genaral{
+	padding: 0;
+}
+.all-post{
+	margin-bottom: 20px;
+}
+.detail-post{
+	padding: 0;
+}
+
+.portfolio-with-title .portfolio-title h3,
+.portfolio-with-title .portfolio-title h3 a{
+	text-transform: none;
+}
+.portfolio-with-title .portfolio-title p,
+.portfolio-with-title .portfolio-title p a{
+	text-transform: none;
+	font-size: 15px;
+}
+.title-highlight{
+	background: #4d9eb6;
+	padding: 10px;
+	font-size: 22px;
+	color:white;
+	width: 20%;
+	border-radius: 5px;
+}
+
+.title-general ul li{
+	display: inline-block;
+	padding: 20px;
+}
+.title-general h3{
+	font-weight: bold;
+	font-family:'Roboto',sans-serif;
+}
+
+ .title-home a{
+    color: #333;
+    font-family: 'Roboto',sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none!important;	
+}
+.hover-show p{
+	padding: 0;
+	margin:0;
+}
+.title-landlord{
+	font-size: 16px;
+}
+
+.read-more a{
+color: #bda87f;
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    margin: 30px 0 50px;
+    padding: 14px 30px 10px;
+    text-decoration: none!important;
+    position: relative;
+    border: none;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    background: #fff;
+    border: 2px solid #bda87f;
+}
+.read-more a:hover{
+	color:white;
+	background: #bda87f;
+}
+.hover-show{
+	    background: #e8e8e8;
+    padding-bottom: 10px;
+    padding-left: 8px;
+}
+.commercial{
+	margin-bottom: 50px;
+}
+.detail-title-css{
+	margin:0;
+	color:#EDC037;
+	font-size: 20px;
+}
+.detail-price-css{
+	margin:0;
+	font-size: 18px;
+}
+
+.detail-address-css{
+	margin:0;
+	font-size: 15px;
+}
+.detail-info{
+	margin-bottom: 30px;
+}
+
+
+ 
