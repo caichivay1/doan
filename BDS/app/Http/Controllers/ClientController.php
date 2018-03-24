@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -64,6 +64,14 @@ class ClientController extends Controller
                 return "not-found";
             } 
     }
+    public function b2($id_post){
+        $cate = Category::where('is_menu',1)->get();
+        $auth = Auth::guard('admin')->user();
+        $post = post::where('id_post',$id_post)->first();
+        $posts = post::where('user_id',$auth->id)->where('action',1)->paginate(10); 
+        $posts1 = post::where('user_id',$auth->id)->where('action',0)->get(); 
+        return view('client.b2',compact('auth','cate','post','posts1','posts'));   
+    }
        public function edit($id){
             $posts = post::find($id);
             $img = $posts->id_post;
@@ -82,7 +90,6 @@ class ClientController extends Controller
     }
 
     public function search(Request $request){
-
             $cate = Category::where('is_menu',1)->get();
                 $auth = Auth::guard('admin')->user();
            $province = province::all();
@@ -118,9 +125,8 @@ class ClientController extends Controller
             $price = $request->price;
             $acr = $request->arc;
             $null = "Không có bài viết nào";
-             $post = post::where('type',$type)->where('land_type',$land_type)->where('province',$provin)
-                            ->whereBetween('acr', $a)->where('type_price',$lp)->whereBetween('price',$p)->get();
-
+             $post = post::where('type',$type)->orwhere('land_type',$land_type)->orwhere('province',$provin)
+                            ->orwhereBetween('acr', $a)->where('type_price',$lp)->whereBetween('price',$p)->get();
             return view('client.resuft_search',compact('post','auth','province','cate','null','type','land_type','provin','price','acr'));
 
     }
@@ -203,7 +209,7 @@ class ClientController extends Controller
             }
 
             $model->save();
-            return redirect(route('manager_client'));
+            return redirect()->route('b2',['id_post'=>$model->id_post]);
     }
     public function cate_detail($k){
         $cate = Category::where('is_menu',1)->get();
@@ -226,6 +232,15 @@ class ClientController extends Controller
             $posts = post::where('action',1)->paginate(9);
 
         return view('home.index',compact('posts','cate','province','auth')); 
+    }
+    public function broser1(Request $request){
+        dd($request->id);
+       $model = post::find($id);
+        if(!$model) return 'not-found';
+       $model->action =$request->radio ;
+       dd($model->action);
+       $model->save();
+         return redirect(route('post.manager'));
     }
 
 }

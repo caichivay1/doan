@@ -95,7 +95,7 @@
                                             <span class="col-md-4">
                                                 <select name="land_type" id="land_type" class="form-control" required="" data-parsley-required-message="Vui lòng chọn loại BDS">
                                                     <option value="">--Loại bất động sản--</option>
-					                                <option @if($posts->land_type == 'Bán đất') selected @endif value="Bán đất">Bán đất</option>
+					                                <option @if($posts->land_type == 'Đất') selected @endif value="Đất">Đất</option>
 					                                <option @if($posts->land_type == 'Kho xưởng') selected @endif value="Kho xưởng">Kho xưởng</option>
 					                                <option @if($posts->land_type == 'Nhà') selected @endif value="Nhà">Nhà</option>
 					                                <option @if($posts->land_type == 'Dự án') selected @endif value="Dự án">Dự án</option>

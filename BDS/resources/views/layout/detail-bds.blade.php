@@ -101,8 +101,8 @@
                 <div class="container">
                     <div class="row detail-info">
                         <p class="detail-title-css">{{$post->title}}</p>
-                        <p class="detail-price-css"><b>Giá:</b> &nbsp;&nbsp;{{$post->price}}</p>
-                        <p class="detail-address-css"><b>Địa chỉ:</b>&nbsp;&nbsp;{{$post->address.'-'.$post->area}}</p>
+                        <p class="detail-price-css" style="font-size: 15px;color:red"><b>Giá:</b> &nbsp;&nbsp;{{$post->price}}&nbsp;{{$post->type_price}}</p>
+                        <p class="detail-address-css"><b>Địa chỉ:</b>&nbsp;&nbsp;<em>{{$post->address.'-'.$post->area}}</em></p>
                     </div>
                     <div class="row">
                         <div class="post-list-aside">
@@ -133,7 +133,9 @@
                                         </iframe>
                                     </div>
                                     <div class="col-md-12" style="padding:15px 0 0 0;">
+                                        @if($adv)
                                         <img src="{{asset($adv->url)}}" height="330px" width="300px">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +149,8 @@
             <!--fun factor-->
             <!--amenities-->
 
-            <div class="container">
-              <h2>Thông tin bài viết</h2>
+            <div class="container" style="padding-top:50px">
+              <h3 style="">Thông tin bài viết</h3>
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Giới thiệu chi tiết</a></li>
                 <li><a data-toggle="tab" href="#menu1">Thông tin địa điểm</a></li>
@@ -156,9 +158,10 @@
               </ul>
 
               <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
+                <div id="home" class="tab-pane fade in active" style="border:1px solid #e8e8e8">
                   <h3>HOME</h3>
                   <p>{!!$post->description!!}</p>
+
                 </div>
                 <div id="menu1" class="tab-pane fade">
                   <h3>Menu 1</h3>
@@ -171,7 +174,7 @@
                                         </iframe>
                                     </div>
                 </div>
-                <div id="menu2" class="tab-pane fade">
+                <div id="menu2" class="tab-pane fade" style="border:1px solid #e8e8e8">
                   <h3>Menu 2</h3>
                   <p><b>Họ tên :</b> &nbsp {{$uc->name}}</p>
                   <p><b>Email</b> : &nbsp {{$uc->email}}</p> 
@@ -180,6 +183,9 @@
                 </div>
               </div>
             </div>
+            
+            
+            <h3 class="container" style="padding-top: 30px">Bài viết nổi bật</h3>
             <div class="post-care container">
                 <div id="img-carousel">
                         @foreach($postvip as $vip) 

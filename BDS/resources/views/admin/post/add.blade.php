@@ -41,7 +41,7 @@
 						<span class="col-md-4">
 							<select name="land_type" id="land_type" class="form-control" required="" data-parsley-required-message="Vui lòng chọn loại BDS">
 						 		<option value="">--Loại bất động sản--</option>
-                                        <option value="Bán đất">Bán dất</option>
+                                        <option value="Đất">Đất</option>
                                         <option value="Kho xưởng">Kho xưởng</option>
                                         <option value="Nhà">Nhà</option>
                                         <option value="Dự án">Dự án</option>

@@ -30,11 +30,12 @@
         <!--body content start-->
         <section class="body-content">
             <!--book form-->
-            <div class="gray-bg p-tb-50">
-                <ol class="breadcrumb"> 
+                           <ol class="breadcrumb"> 
                   <li><a href="{{route('homepage')}}"><i class="fa fa-home">&nbsp</i>Home</a></li>
                   <li><a href="#">List-all</a></li>
                 </ol>
+            <div class="gray-bg p-tb-50" style="padding:30px;background: rebeccapurple;
+    margin-bottom: 30px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">

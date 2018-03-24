@@ -30,11 +30,12 @@
         <!--body content start-->
         <section class="body-content">
             <!--book form-->
-            <div class="gray-bg p-tb-50">
                 <ol class="breadcrumb"> 
                   <li><a href="{{route('homepage')}}"><i class="fa fa-home">&nbsp</i>Home</a></li>
                   <li><a href="#">List-all</a></li>
                 </ol>
+            <div class="gray-bg p-tb-50" style="padding:30px;background: rebeccapurple;
+    margin-bottom: 30px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -49,24 +50,24 @@
                                 <div class="form-group">
                                     <select class="form-control" name="land_type">
                                         <option>-- Chọn danh mục --</option>
-                                        <option value="Đất">Đất</option>
-                                        <option value="Kho xưởng">Kho xưởng</option>
-                                        <option value="Nhà">Nhà</option>
-                                        <option value="Dự án">Dự án</option>
-                                        <option value="Căn hộ">Căn hộ</option>
+                                        <option  @if($land_type == 'Đất') selected @endif value="Đất">Đất</option>
+                                        <option  @if($land_type == 'Kho xưởng') selected @endif value="Kho xưởng">Kho xưởng</option>
+                                        <option  @if($land_type == 'Nhà') selected @endif value="Nhà">Nhà</option>
+                                        <option  @if($land_type == 'Dự án') selected @endif value="Dự án">Dự án</option>
+                                        <option  @if($land_type == 'Căn hộ') selected @endif value="Căn hộ">Căn hộ</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" name="type">
                                         <option>-- Chọn loại --</option>
-                                        <option value="Cần bán">Cần bán</option>
-                                        <option value="Cho thuê">Cho thuê</option>
-                                        <option value="Cần mua">Cần mua</option>
+                                        <option @if($type == 'Cần bán') selected @endif value="Cần bán">Cần bán</option>
+                                        <option @if($type == 'Cho thuê') selected @endif value="Cho thuê">Cho thuê</option>
+                                        <option @if($type == 'Cần mua') selected @endif value="Cần mua">Cần mua</option>
                                     </select>
                                 </div>
                                  <div class="form-group">
                                     <select class="form-control" name="province">
-                                        <option>-- Địa điểm --</option>
+                                        <option>{{$provin}}</option>
                                         @foreach($province as $provin)
                                         <option>{{$provin->name}}</option>
                                         @endforeach
@@ -76,19 +77,19 @@
                                 <div class="form-group">
                                     <select class="form-control" name="price">
                                         <option>-- Giá --</option>
-                                        <option value="01">Dưới 1 tỷ</option>
-                                        <option value="12">Từ 1-2 tỷ</option>
-                                        <option value="23">Trên 2 tỷ</option>
-                                        <option value="34">Trên 3 tỷ</option>
+                                        <option @if($price == '01') selected @endif value="01">Dưới 1 tỷ</option>
+                                        <option @if($price == '12') selected @endif value="12">Từ 1-2 tỷ</option>
+                                        <option @if($price == '23') selected @endif value="23">Trên 2 tỷ</option>
+                                        <option @if($price == '34') selected @endif value="34">Trên 3 tỷ</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" name="acr">
                                         <option>-- Diện tích --</option>
-                                        <option value="0">Dưới 100m2 </option>
-                                        <option value="100">Từ 100-200m2</option>
-                                        <option value="200">Từ 100-200m2</option>
-                                        <option value="300">Trên 200m2</option>
+                                        <option @if($acr == '0') selected @endif value="0">Dưới 100m2 </option>
+                                        <option @if($acr == '100') selected @endif value="100">Từ 100-200m2</option>
+                                        <option @if($acr == '200') selected @endif value="200">Từ 100-200m2</option>
+                                        <option @if($acr == '300') selected @endif value="300">Trên 200m2</option>
                                     </select>
                                 </div>
 
@@ -98,7 +99,6 @@
                     </div>
                 </div>
             </div>
-        
             <!--book form-->
             <!--intro post-->
 
@@ -112,7 +112,7 @@
     </div>
                         <!--post style 2 start-->
     <div class="post-list">
-                @if($post->count() ==0)
+                @if($post->count() == 0)
             <p style="color:red;font-size:20px" class="text-center">{{$null}}</p>
         @endif
         @foreach($post as $vip)
@@ -121,14 +121,17 @@
                             <img src="{{asset($vip->avatar)}}" alt="Image"  style="height:280px;width: 100%" >
                         </a>
                             <div class="hover-show">
-                                <p ><a href="{{$vip->slug}}" class="title-landlord">{{$vip->title}}</a></p>
-                                <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$vip->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$vip->price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$vip->type}}</span></i></p>
+                                <p ><a href="{{$vip->slug}}" class="title-landlord">{{str_limit($vip->title,60,'(...)')}}</a></p>
+                                <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$vip->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$vip->price.$vip->type_price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$vip->type}}</span></i></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp {{$vip->address.','.$vip->area}}</p>
-                                <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($vip->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="mailto:joe@example.com?subject=feedback" "email me" style="color:green;">Read more...</a></p>
-                            </div>               
+                                <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($vip->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="{{$vip->slug}}" "email me" style="color:green;">Read more...</a></p>
+                            </div>                   
         </div>
         @endforeach
     </div>
+    <div class="container text-center">
+                                
+                                </div>
                         <!--post style 2 end-->
 </div>
 <div class="container text-center">

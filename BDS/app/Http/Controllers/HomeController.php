@@ -26,7 +26,7 @@ class HomeController extends Controller
     }
 
    public function index(){
-    $adv = adv::where('action',1)->where('location','Trang chủ')->paginate(2);
+    $adv = adv::where('action',1)->where('location','Trang chủ')->paginate(3);
     $slider = slider::all();
     $cate = Category::where('is_menu',1)->get();
     $province = province::all();

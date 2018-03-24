@@ -38,6 +38,9 @@ Route::get('manager-loading-client','ClientController@loading')->name('loading_p
 Route::post('manager-savepost-client','ClientController@save')->name('save.post.client');
 Route::get('post/remove/{id}','ClientController@remove')->name('postclient.remove');
 Route::post('search_client','ClientController@search')->name('search_client');
+Route::get('b2/{a}','ClientController@b2')->name('b2');
+Route::post('broser1','ClientController@broser1')->name('broser12');
+
 
 
 

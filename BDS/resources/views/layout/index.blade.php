@@ -48,7 +48,8 @@
             <!--book form-->
 
             <div class="gray-bg p-tb-50"> 
-                <div class="gray-bg p-tb-50">
+                <div class="gray-bg p-tb-50" style="padding:30px;background: rebeccapurple;
+    margin-bottom: 30px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -135,10 +136,10 @@
                  @foreach($postvip as $vip) 
                     <div class="item item-show" >
                         <a href="#">
-                            <img src="{{asset($vip->avatar)}}" alt="Image" class="hover-opacity" style="height:280px" >
+                            <img src="{{asset($vip->avatar)}}" alt="Image" class="hover-opacity" style="height:230px" >
                         </a>
                             <div class="hover-show">
-                                <p ><a href="{{$vip->slug}}" class="title-landlord">{{$vip->title}}</a></p>
+                                <p ><a href="{{$vip->slug}}" class="title-landlord">{{str_limit($vip->title,60,'(...)')}}</a></p>
                                 <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$vip->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$vip->price.$vip->type_price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$vip->type}}</span></i></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp {{$vip->address.','.$vip->area}}</p>
                                 <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($vip->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="{{$vip->slug}}" "email me" style="color:green;">Read more...</a></p>

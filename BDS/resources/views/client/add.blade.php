@@ -46,9 +46,9 @@
 
             <!--intro post-->
             <!--room post-->
-            <div class="page-content gray-bg" style="background: white">
-
-                <div class="container">
+            <div class="page-content gray-bg" style="background: white;padding: 0">
+                <div class="container" style="background: #e8e8e8;">
+                <p style="font-size: 20px;padding-left: 200px;color:green">Bước 1: Soạn tin đăng</p>
                     <div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm bài viết</h2></div>
                         <form action="{{route('save.post.client')}}" method="post" data-parsley-validate="" enctype="multipart/form-data" novalidate>
                             {{csrf_field()}}
@@ -97,10 +97,11 @@
                                             <span class="col-md-4">
                                                 <select name="land_type" id="land_type" class="form-control" required="" data-parsley-required-message="Vui lòng chọn loại BDS">
                                                     <option value="">--Loại bất động sản--</option>
-                                                    <option value="Bán đất">Bán dất</option>
+                                                    <option value="Đất">Đất</option>
                                                     <option value="Nhà">Nhà</option>
                                                     <option value="Dự án">Dự án</option>
                                                     <option value="Căn hộ">Căn hộ</option>
+                                                    <option value="Kho xưởng">Kho xưởng</option>
 
                                                 </select>
                                             </span>
@@ -289,7 +290,7 @@
 
 
                             <div class="col-md-offset-6">
-                                                                <button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
+                                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button>
                                                                 <button type="button" class="btn default">Cancel</button>
                             </div>
                         </form>
