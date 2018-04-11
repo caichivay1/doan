@@ -1,7 +1,7 @@
 @extends('layout.metronic')
 @section('content')
 	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm quảng cáo</h2></div>
-	<form action="{{route('adv.save')}}" method="post" enctype="multipart/form-data" novalidate>
+	<form action="{{route('adv.save')}}" method="post" enctype="multipart/form-data" novalidate data-parsley-validate="" required="" data-parsley-required-message="Vui lòng nhap ten">
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="{{$model->id}}">
 		<div class="col-md-12">
@@ -53,7 +53,8 @@
 
 		<div class="col-md-offset-4">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-											<button type="button" class="btn default"><a href="{{URL::previous()}}">Cancel</a></button>
+											<a href="{{URL::previous()}}"><button type="button" class="btn default ">Cancel</button></a>
+		</div>
 		</div>
 	</form>
 

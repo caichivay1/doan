@@ -8,7 +8,7 @@ use App\post;
 use App\province;
 use App\district; 
 use App\ward;
-use App\image;
+use App\Image;
 use App\Admin;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostFormRequest;
@@ -55,7 +55,7 @@ class PostController extends Controller
 
 
 
-    public function save(Request $request){
+    public function save(PostFormRequest $request){
         if($request->id){
             $model = post::find($request->id);
             if(!$model) return 'not-found';

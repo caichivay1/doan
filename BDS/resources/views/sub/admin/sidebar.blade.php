@@ -46,7 +46,7 @@
 				</li>
 				<li>
 					<a href="javascript:;">
-					<i class="icon-basket"></i>
+					<i class="fa fa-book"></i>
 					<span class="title">Bài Viết</span>
 					<span class="arrow "></span>
 					</a>
@@ -58,7 +58,7 @@
 						</li>
 							<li>
 							<a href="{{route('post.manager')}}">
-							<i class="icon-list"></i>
+							<i class="fa fa-gavel"></i>
 							Quản lí bài viết</a>
 						</li>
 
@@ -88,14 +88,14 @@
 						</li>
 							<li>
 							<a href="{{route('user.manager')}}">
-							<i class="icon-plus"></i>
+							<i class="fa fa-gavel"></i>
 							Quản lí khách hàng</a>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<a href="javascript:;">
-					<i class="icon-user"></i>
+					<i class="fa fa-bars"></i>
 					<span class="title">Quản lí category</span>
 					<span class="arrow "></span>
 					</a>
@@ -107,7 +107,7 @@
 						</li>
 						<li>
 							<a href="{{route('category.add')}}">
-							<i class="icon-list"></i>
+							<i class="icon-plus"></i>
 							Thêm category</a>
 						</li>
 						
@@ -115,7 +115,7 @@
 				</li>
 				<li>
 					<a href="javascript:;">
-					<i class="icon-user"></i>
+					<i class="fa fa-sliders"></i>
 					<span class="title">Quản lí slider</span>
 					<span class="arrow "></span>
 					</a>
@@ -127,7 +127,7 @@
 						</li>
 						<li>
 							<a href="{{route('slider.add')}}">
-							<i class="icon-list"></i>
+							<i class="icon-plus"></i>
 							Thêm slider</a>
 						</li>
 
@@ -136,7 +136,7 @@
 				</li>
 				<li>
 					<a href="javascript:;">
-					<i class="icon-user"></i>
+					<i class="fa fa-location-arrow"></i>
 					<span class="title">Quản lí quảng cáo</span>
 					<span class="arrow "></span>
 					</a>
@@ -148,7 +148,7 @@
 						</li>
 						<li>
 							<a href="{{route('adv.add')}}">
-							<i class="icon-list"></i>
+							<i class="icon-plus"></i>
 							Thêm quảng cáo</a>
 						</li>
 

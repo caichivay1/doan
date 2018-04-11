@@ -43,7 +43,7 @@
             <!--room post-->
             <div class="page-content gray-bg" style="background: white">
                 <div class="container">
-                    <div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm bài viết</h2></div>
+                    <div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Chỉnh sửa bài viết</h2></div>
                         <form action="{{route('save.post.client')}}" method="post" enctype="multipart/form-data" data-parsley-validate="" novalidate>
                             {{csrf_field()}}
                             <input type="hidden" name="id" value="{{$posts->id}}">

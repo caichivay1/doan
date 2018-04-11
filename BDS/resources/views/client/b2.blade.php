@@ -62,11 +62,13 @@
                                         </ul>
                                 </div>
                                 <div class="col-md-9">
-                                   <input type="radio" name="radio" id="radio" value="1"><label>Top Listing 20 ngày</label><span style="padding-left: 100px;color:red">Phí :50000VND</span>
+                                   <input type="radio" name="radio" id="radio" value="1"><label for="radio">Top Listing 20 ngày</label><span style="padding-left: 100px;color:red">Phí :50000VND</span>
                                    <p style="color:12px;opacity: 0.5">Xuất hiện tại vị trí đầu trang search.Luôn đứng đầu trên trang chủ,trong các trang chi tiết đều được xuất hiện,lượt xem sẽ được nhiều hơn.</p>
-                                   <p class="tt" hidden><a target="_blank" href="https://www.nganluong.vn/button_payment.php?receiver=(Email chính tài khoản nhận tiền)&product_name=(Mã đơn đặt hàng)&price=(Tổng giá trị)&return_url=(URL thanh toán thành công)&comments=(Ghi chú về đơn hàng)"><img src="https://www.nganluong.vn/css/newhome/img/button/fee-sm.png"border="0" /></a></p>
+                                   <p class="tt" hidden>
+                                   <a target="_blank" href="https://www.nganluong.vn/button_payment.php?receiver=nguyenanhvan.nav@gmail.com&product_name=Phi noi bat&price=50000&return_url={{URL::previous()}}&comments=(Ghi chú về đơn hàng)"><img src="https://www.nganluong.vn/css/newhome/img/button/fee-sm.png"border="0" /></a>
+                                   </p>
 
-                                   <input type="radio" name="radio" class="bassic" value="0"><label>Bassic Listing 15 ngày</label><span style="padding-left: 100px;">Miễn phí</span>
+                                   <input type="radio" name="radio" class="bassic" value="0" id="a"><label for="a">Bassic Listing 15 ngày</label><span style="padding-left: 100px;">Miễn phí</span>
                                    <p style="color:12px;opacity: 0.5">Hiện thị sau cùng trong danh sách tìm kiếm. sau 15 ngày bài viết sẽ tự động bị xóa</p>
                                 </div>
                             </div>

@@ -1,14 +1,14 @@
 @extends('layout.metronic')
 @section('content')
 	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm quảng cáo</h2></div>
-	<form action="{{route('adv.save')}}" method="post" enctype="multipart/form-data" novalidate>
+	<form action="{{route('adv.save')}}" method="post" enctype="multipart/form-data" novalidate data-parsley-validate="">
 		{{csrf_field()}}
 		<input type="hidden" name="id">
 		<div class="col-md-12">
 				<div class="form-group row">
 					<label class="col-md-3 control-label">Nguồn quảng cáo<span class="text-danger ">*</span></label>
 					<div class="col-md-5">
-						<input type="text" class="form-control" placeholder="Nhập tên chuyên mục" name="source" value="">
+						<input type="text" class="form-control" placeholder="Nhập tên chuyên mục" name="source" value="" required="" data-parsley-required-message="Vui lòng nhap ten" >
 <!-- 						@if (count($errors) > 0)
 							<span style="color:red">{{$errors->first('title')}}</span>
 						
@@ -50,7 +50,8 @@
 
 		<div class="col-md-offset-4">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-											<button type="button" class="btn default">Cancel</button>
+											<a href="{{URL::previous()}}"><button type="button" class="btn default ">Cancel</button></a>
+		</div>
 		</div>
 	</form>
 

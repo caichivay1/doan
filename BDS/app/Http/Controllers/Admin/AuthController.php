@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\province;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Contracts\Auth\Authenticatable;
+use App\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -55,6 +59,24 @@ class AuthController extends Controller
         else{
             return back()->with('msg','Sai tên tài khoản hoặc mật khẩu!');
         }
+    }
+    public function redirectToProvider(){   
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function handleProviderCallback()
+    {
+        $user  = Socialite::driver('facebook')->user();
+        $admin = new Admin;
+        $admin->name = $user->name;
+        $admin->email = $user->email;
+        $admin->password = Hash::make('123456');
+        $admin->role = 1;
+        $admin->phone = "0987654321";
+        $admin->save();
+        Auth::guard('admin')->login($admin);
+        return redirect()->route('homepage');
+
+
     }
 }
 

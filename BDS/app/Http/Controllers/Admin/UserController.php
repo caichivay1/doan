@@ -42,14 +42,13 @@ class UserController extends Controller
         return view('admin.user.add',compact('admin','province'));
     }
     public function save(Request $request){
-
-
-        $user = Admin::all();
-        foreach($user as $u){
-             if($u->email == $request->email)
-                dd('email exits');
+        if($request->id){
+            $model = Admin::find($request->id);
+            if(!$model) return 'not-found';
+        }else{
+                    $model = new Admin();
         }
-        $model = new Admin();
+
         $model ->fill($request->all());
         $model->password =Hash::make($request->password);
         $tinh=province::where('provinceid',$request->province1)->first()->name;

@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <select class="form-control" name="land_type">
                                         <option>-- Chọn danh mục --</option>
-                                        <option value="Bán đất">Bán đất</option>
+                                        <option value="Đất">Đất</option>
                                         <option value="Kho xưởng">Kho xưởng</option>
                                         <option value="Nhà">Nhà</option>
                                         <option value="Dự án">Dự án</option>
@@ -74,9 +74,9 @@
                                 <div class="form-group">
                                     <select class="form-control" name="type">
                                         <option>-- Chọn loại --</option>
-                                        <option value="Cần bán">Cần bán</option>
+                                        <option value="Cần Bán">Cần Bán</option>
                                         <option value="Cho thuê">Cho thuê</option>
-                                        <option value="Cần mua">Cần mua</option>
+                                        <option value="Cần Mua">Cần Mua</option>
                                     </select>
                                 </div>
                                  <div class="form-group">
@@ -139,7 +139,7 @@
                             <img src="{{asset($vip->avatar)}}" alt="Image" class="hover-opacity" style="height:230px" >
                         </a>
                             <div class="hover-show">
-                                <p ><a href="{{$vip->slug}}" class="title-landlord">{{str_limit($vip->title,60,'(...)')}}</a></p>
+                                <p ><a href="{{$vip->slug}}" class="title-landlord">{!!Illuminate\Support\Str::words($vip->title,12,'...')!!}</a></p>
                                 <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$vip->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$vip->price.$vip->type_price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$vip->type}}</span></i></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp {{$vip->address.','.$vip->area}}</p>
                                 <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($vip->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="{{$vip->slug}}" "email me" style="color:green;">Read more...</a></p>
@@ -168,10 +168,10 @@
                     <div class="portfolio-item">
                         <div class="thumb">
                             <img src="{{asset($new->avatar)}}" alt="" width="100%" style="height: 260px"> 
-                        </div>
+                        </div> 
 
                         <div class="portfolio-title hover-show" style="padding-left:12px">
-                            <h3><a href="{{$new->slug}}"   title="lightbox view" style="color:#4d9eb6; font-weight:bold";>{{$new->title}}</a></h3>
+                            <h3><a href="{{$new->slug}}"   title="lightbox view" style="color:#4d9eb6; font-weight:bold";>{{str_limit($new->title,60,'(...)')}}</a></h3>
                             <p><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp {{$new->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$new->price.$new->type_price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$new->type}}</span></i></p>
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp{{$new->address.','.$new->area}}</p>
                             <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y',strtotime($new->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="{{$new->slug}}" "email me" style="color:green;">Read more...</a></p>
@@ -273,7 +273,7 @@
                                     <img src="{{asset($p->avatar)}}" alt="Image"  style="height:280px;width: 100%" >
                                 </a>
                             <div class="hover-show">
-                                <p ><a href="{{$p->slug}}" class="title-landlord">{{$p->title}}</a></p>
+                                <p ><a href="{{$p->slug}}" class="title-landlord">{{str_limit($p->title,60,'(...)')}}</a></p>
                                 <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$p->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$p->price.$p->type_price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$p->type}}</span></i></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp {{$p->address.','.$p->area}}</p>
                                 <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($p->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="{{$new->slug}}" "email me" style="color:green;">Read more...</a></p>

@@ -48,6 +48,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="login">
+@if (session('alert'))
+    <div class="alert alert-success">
+        <p>{{ session('alert') }}</p>
+    </div>
+@endif
+
 <!-- BEGIN LOGO -->
 <div class="logo">
 	<a href="index.html">
@@ -72,7 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 			@if(session('msg'))
 				<div class="alert alert-danger">
-					<span>{{session('msg')}}</span>
+					<span id="msg">{{session('msg')}}</span>
 				</div>
 			@endif
 		<div class="form-group">
@@ -133,14 +139,14 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="forget-password">
 			<h4>Forgot your password ?</h4>
 			<p>
-				 no worries, click <a href="javascript:;" id="forget-password">
+				 no worries, click <a href="javascript:;" id="forget-password" style="color:black">
 				here </a>
 				to reset your password.
 			</p>
 		</div>
 		<div class="create-account">
 			<p>
-				 Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
+				 Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn" style="color:black">
 				Create an account </a>
 			</p>
 		</div>
@@ -163,7 +169,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<button type="button" id="back-btn" class="btn">
 			<i class="m-icon-swapleft"></i> Back </button>
 
-			<button type="submit" class="btn blue pull-right">
+			<button type="submit" class="btn blue pull-right"> 
 			Submit <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 		</div>
@@ -173,8 +179,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 	<!-- BEGIN REGISTRATION FORM -->
-	<form class="register-form" action="{{route('register_client')}}" method="post">
-					{{csrf_field()}}
+	<form class="register-form" action="{{route('register_client')}}" method="post" name="register-vali">
+					<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 		<h3>Sign Up</h3>
 		<p>
 			 Enter your personal details below:
@@ -189,10 +195,11 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Email</label>
+			<label class="control-label visible-ie8 visible-ie9" >Email</label>
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+				<input class="form-control placeholder-no-fix" type="text" id="mail" placeholder="Email" name="email" />
+				<p id= 'msg' style="color:red"></p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -596,5 +603,30 @@ Layout.init(); // init current layout
 <!-- END BODY -->
 </html>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".alert-success").hover(function(){
+			 $(".alert").hide();
+		});
+		$("#mail").blur(function(){
+			$.ajax({
+                url: '/validatemail',
+                type: 'POST',
+                dataType: 'json',
+                data:{	"_token": $('#token').val(),
+                		"email":$('#mail').val()
+                	},
+                success: function (data) { 
+                	if(data.exists==false){
+                		$("#msg").html("Email da ton tai!");
+                	}
+                	else{
+                		$("#msg").html("");
+                	}
+                }
+            });
+        });
+	});
 
+</script>
 

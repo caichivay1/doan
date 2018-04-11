@@ -1,7 +1,7 @@
 @extends('layout.metronic')
 @section('content')
 	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm bài viết</h2></div>
-	<form action="{{route('slider.save')}}" method="post" enctype="multipart/form-data" data-parsley-validate="" novalidate>
+	<form action="{{route('post.save')}}" method="post" enctype="multipart/form-data" data-parsley-validate="" novalidate>
 		{{csrf_field()}}
 		<input type="hidden" name="id">
 		<input type="hidden" name="action" value="1">
@@ -174,9 +174,9 @@
                                     </div>
 		 <div class="form-group row">
                                             <label class="col-md-3 control-label">Diện tích <span class="text-danger ">*</span></label>
-                                            <span class="col-md-5">
+                                            <span class="col-md-8">
                                                 <input type="text" name="acr" data-parsley-type="number" data-parsley-type-message="Sai định dạng.Diện tích kiểu số" required="" data-parsley-required-message="Vui lòng nhập diện tích">
-                                                <span style="background: #e8e8e8ff;padding: 5px 20px;">m2</span>
+                                                <span style="background: #e8e8e8ff;padding: 5px 20px; border: 1px">m2</span>
                                             </span>
                                             
                                                                 @if (count($errors) > 0)
@@ -207,7 +207,6 @@
 				<label class="col-md-2 control-label" style="padding-left: 45px">Một số hình ảnh </label>
 				<div class="col-md-9">
 					<div class="field" align="left">
-					  <h3>Upload your images</h3>
 					  <input type="file" id="files" name="files[]" multiple />
 					</div>
 				</div>
@@ -215,7 +214,7 @@
 		<div class="form-group row">
 				<label class="col-md-1 control-label" style="padding-left: 45px">Mô tả </label>
 				<div class="col-md-11" style="padding-left: 95px">
-					<textarea name="description" required="" data-parsley-required-message="Vui lòng nhập mô tả"></textarea>
+					<textarea name="description" ></textarea>
 						 	@if (count($errors) > 0)
 							<span style="color:red">{{$errors->first('description')}}</span>
 						

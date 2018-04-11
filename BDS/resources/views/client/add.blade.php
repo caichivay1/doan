@@ -252,6 +252,7 @@
                                     <label class="col-md-3 control-label" >Một số hình ảnh<span class="text-danger ">*</span> </label>
                                     <div class="col-md-9">
                                         <div class="field" align="left">
+                                        <em style="font-size:13px;color:green">Chú ý:Hình ảnh có chứa sổ đỏ thì tỉ lệ duyệt bài sẽ được duyệt bài với tỉ lệ cao hơn.</em>
                                           <input type="file" id="files" name="files[]" multiple />
                                         </div>
                                     </div>
@@ -259,7 +260,7 @@
                             <div class="form-group row">
                                     <label class="col-md-3 control-label">Mô tả chi tiết<span class="text-danger ">*</span></label>
                                     <div class="col-md-9"">
-                                        <textarea name="description" required="" data-parsley-required-message="Vui lòng nhập mô tả"></textarea>
+                                        <textarea name="description" ></textarea>
                                                 @if (count($errors) > 0)
                                                 <span style="color:red">{{$errors->first('description')}}</span>
                                             

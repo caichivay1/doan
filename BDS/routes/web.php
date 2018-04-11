@@ -44,8 +44,9 @@ Route::post('broser1','ClientController@broser1')->name('broser12');
 
 
 
-
-
+//facebook solialite
+Route::get('/redirect/facebook', 'Admin\AuthController@redirectToProvider');
+Route::get('/callback/facebook', 'Admin\AuthController@handleProviderCallback');
 
 
 
@@ -53,10 +54,12 @@ Route::post('broser1','ClientController@broser1')->name('broser12');
 // 
 // dang ki thanh vien
 Route::post('client-add-customer','ClientController@addcustom')->name('register_client');
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\PasswordReset;
 use Carbon\Carbon;
+use App\Admin;
 Route::post('forgrt-pwd.email',function(Request $request){
+
 	$pwdReset = PasswordReset::where('email',$request->email)->delete();
 		$user = App\Admin::where('email',$request->email)->first();
 		if(!$user){
@@ -70,15 +73,18 @@ Route::post('forgrt-pwd.email',function(Request $request){
 	$pwdReset->created_at = $now;
 	$pwdReset->save();
 	$url = url('/reset-pwd/'.$token);
-
 	Mail::send('mail_template.reset-password-mail', compact('url','user'), function ($message) use ($user) {
 	    $message->to($user->email, $user->name);
 	    // $message->cc('kenjav96@gmail.com', 'Dũng thần dâm');
 	    // $message->replyTo('thienth@fpt.edu.vn', 'Mr.Thien');
-	    $message->subject('Yêu cầu cấp lại mật khẩu!');
+	    $message->subject('Yêu cầu cấp lại mật khẩu!');	
 	});
+		return redirect()->back()->with('alert','Gui thanh cong!vui long truy cap email de kiem tra.Xin cam on!');
 })->name('forgrt-pwd.email');
+    //xac nhan dang ki tai khoan qua email
+    Route::get('register-client-mail/{email}','ClientController@register')->name('register-mail');
 
+Route::get('register_success/{id}','ClientController@register_role');
 Route::get('reset-pwd/{token}',function($token){
 		// check token co hop le hay khong
 	$pwdReset = PasswordReset::where('token', $token)->first();
@@ -94,6 +100,25 @@ Route::get('reset-pwd/{token}',function($token){
 	}
 	return view('auth.reset-pwd', compact('token'));
 });
+
+Route::post('auth-reset-password', function(Request $request) {
+    $pwdReset = PasswordReset::where('token', $request->token)->first();
+	if(!$pwdReset){
+		return "error! invalid token";
+	}
+	$thatDay = Carbon::createFromFormat('Y-m-d H:i:s', $pwdReset->created_at);
+	$now = Carbon::now();
+	$dif = $now->diffInHours($thatDay);
+	if($dif > 24){
+		DB::table('password_resets')->where('token', $token)->delete();
+		return "error! invalid token";
+	}
+	$user = Admin::where('email', $pwdReset->email)->first();
+	$user->password = Hash::make($request->password);
+	$user->save();
+	return redirect()->route('client');
+})->name('auth.reset-pwd');
+
 Route::get('list-all','AllController@index')->name('list-all');
 
 use Illuminate\Support\Facades\Mail;
@@ -114,4 +139,5 @@ Route::get('district','Admin\PostController@district');
 Route::get('list-all/{k}','ClientController@cate_detail')->name('cate_detail');
 Route::get('like-all/{type}','ClientController@like_all')->name('like_all');
 Route::get('/{k}','DetailController@index');
+Route::post('/validatemail','ClientController@validatemail');
  

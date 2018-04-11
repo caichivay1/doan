@@ -27,13 +27,13 @@
                         <div class="col-md-3">
                             <h5 class="text-uppercase">Liên kết nhanh</h5>
                             <ul class="f-list">
-                                <li><a href="#">Đăng kí</a>
+                                <li><a href="{{route('client')}}">Đăng kí</a>
                                 </li>
-                                <li><a href="#">Đăng nhập</a>
+                                <li><a href="{{route('client')}}">Đăng nhập</a>
                                 </li>
-                                <li><a href="#">Nhận thông tin</a>
+                                <li><a href="https://www.facebook.com/caichivay">Nhận thông tin</a>
                                 </li>
-                                <li><a href="#">Liên hệ</a>
+                                <li><a href="tel:+84969031285" >Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="social-link circle pull-right">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/caichivay"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-dribbble"></i></a>
                                 <a href="#"><i class="fa fa-google-plus"></i></a>

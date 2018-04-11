@@ -1,6 +1,6 @@
 @extends('layout.metronic')
 @section('content')
-	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm khách hàng</h2></div>
+	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Sữa chuyên mục</h2></div>
 	<form action="{{route('category.save')}}" method="post" enctype="multipart/form-data" novalidate>
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="{{$cate->id}}">
@@ -42,7 +42,8 @@
 
 		<div class="col-md-offset-4">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-											<button type="button" class="btn default"><a href="{{URL::previous()}}">Back</a></button>
+											<a href="{{URL::previous()}}"><button type="button" class="btn default ">Cancel</button></a>
+		</div>
 		</div>
 	</form>
 

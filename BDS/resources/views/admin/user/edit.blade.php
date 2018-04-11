@@ -1,7 +1,7 @@
 @extends('layout.metronic')
 @section('content')
 	<div class="text-center" style="margin-bottom: 30px;color:blue"><h2>Thêm khách hàng</h2></div>
-	<form action="{{route('user.save')}}" method="post" enctype="multipart/form-data" novalidate>
+	<form action="{{route('user.save')}}" method="post" enctype="multipart/form-data" novalidate data-parsley-validate="" >
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="{{$user->id}}">
 		<input type="hidden" name="role" value="1">
@@ -45,7 +45,7 @@
 				<div class="form-group row">
 					<label class="col-md-3 control-label">Thành phố</label>
 					<div class="col-md-5">
-						<select name="province1" id="province" class="form-control">
+						<select name="province1" id="province" class="form-control" required="" data-parsley-required-message="Vui lòng lựa chọn tỉnh">
 						 		<option value="">{{$user->province}}</option>
 						 		@foreach($province as $p)
 
@@ -61,7 +61,7 @@
 				<div class="form-group row">
 					<label class="col-md-3 control-label">Quận</label>
 					<div class="col-md-5">
-						<select name="district" id="district" class="form-control">
+						<select name="district" id="district" class="form-control" required="" data-parsley-required-message="Vui lòng lựa chọn quận/huyện">
 							 	<option  value="">{{$user->district}}</option>
 							</select>
 														 	@if (count($errors) > 0)
@@ -73,7 +73,7 @@
 				<div class="form-group row">
 					<label class="col-md-3 control-label">Phường</label>
 					<div class="col-md-5">
-						<select id="ward" name="ward1" class="form-control">
+						<select id="ward" name="ward1" class="form-control" required="" data-parsley-required-message="Vui lòng lựa chọn phường/xã">
 							 	<option  value="">{{$user->ward}}</option>
 
 							</select>
@@ -88,7 +88,8 @@
 
 		<div class="col-md-offset-4">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-											<button type="button" class="btn default"><a href="{{URL::previous()}}">Back</a></button>
+											<a href="{{URL::previous()}}"><button type="button" class="btn default ">Cancel</button></a>
+		</div>
 		</div>
 	</form>
 

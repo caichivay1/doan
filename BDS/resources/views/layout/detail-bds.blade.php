@@ -30,11 +30,8 @@
         <!--body content start-->
         <section class="body-content">
             <!-- <div class="page-content gray-bg"> -->
-                              <div class="gray-bg p-tb-50">
-                <ol class="breadcrumb"> 
-                  <li><a href="{{route('homepage')}}"><i class="fa fa-home">&nbsp</i>Home</a></li>
-                  <li><a href="#">Detail-post</a></li>
-                </ol>
+                              <div class="gray-bg p-tb-50" style="padding:30px;background: rebeccapurple;
+    margin-bottom: 30px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -175,7 +172,6 @@
                                     </div>
                 </div>
                 <div id="menu2" class="tab-pane fade" style="border:1px solid #e8e8e8">
-                  <h3>Menu 2</h3>
                   <p><b>Họ tên :</b> &nbsp {{$uc->name}}</p>
                   <p><b>Email</b> : &nbsp {{$uc->email}}</p> 
                   <p><b>Số điện thoại </b>: &nbsp <a href="tel:{{$uc->phone}}">{{$uc->phone}}</a></p>
@@ -194,7 +190,7 @@
                             <img src="{{asset($vip->avatar)}}" alt="Image" class="hover-opacity" style="height:280px" >
                         </a>
                             <div class="hover-show">
-                                <p ><a href="#" class="title-landlord">{{$vip->title}}</a></p>
+                                <p ><a href="#" class="title-landlord">{!!Illuminate\Support\Str::words($vip->title,12,'...')!!}</a></p>
                                 <p ><i class="fa fa-home" aria-hidden="true">&nbsp&nbsp{{$vip->acr}}m2</i>&nbsp &nbsp<i class="fa fa-money" aria-hidden="true">&nbsp&nbsp <span style="color:red;">{{$vip->price}}</span></i>&nbsp&nbsp<i class="fa fa-bar-chart" aria-hidden="true"> <span style="color:red;">{{$vip->type}}</span></i></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp &nbsp {{$vip->address.','.$vip->area}}</p>
                                 <p><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp &nbsp{{date('d-m-Y', strtotime($vip->created_at))}}&nbsp&nbsp&nbsp &nbsp <a href="mailto:joe@example.com?subject=feedback" "email me" style="color:green;">Read more...</a></p>

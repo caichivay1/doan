@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\post;
+use App\Image;
 use App\province;
 use Carbon\Carbon;
 use App\Category;
 use App\slider;
 use App\adv;
+use App\Admin;
 class HomeController extends Controller
 {
 
@@ -26,6 +28,10 @@ class HomeController extends Controller
     }
 
    public function index(){
+    // $b = post::find(2)->asd;
+    // // dd($b);
+    // $a =post::where('id_post','5aa9caa177815')->first()->imagess;
+    // dd($a);
     $adv = adv::where('action',1)->where('location','Trang chủ')->paginate(3);
     $slider = slider::all();
     $cate = Category::where('is_menu',1)->get();

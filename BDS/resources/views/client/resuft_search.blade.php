@@ -30,10 +30,6 @@
         <!--body content start-->
         <section class="body-content">
             <!--book form-->
-                <ol class="breadcrumb"> 
-                  <li><a href="{{route('homepage')}}"><i class="fa fa-home">&nbsp</i>Home</a></li>
-                  <li><a href="#">List-all</a></li>
-                </ol>
             <div class="gray-bg p-tb-50" style="padding:30px;background: rebeccapurple;
     margin-bottom: 30px;">
                 <div class="container">
@@ -60,7 +56,7 @@
                                 <div class="form-group">
                                     <select class="form-control" name="type">
                                         <option>-- Chọn loại --</option>
-                                        <option @if($type == 'Cần bán') selected @endif value="Cần bán">Cần bán</option>
+                                        <option @if($type == 'Cần Bán') selected @endif value="Cần Bán">Cần bán</option>
                                         <option @if($type == 'Cho thuê') selected @endif value="Cho thuê">Cho thuê</option>
                                         <option @if($type == 'Cần mua') selected @endif value="Cần mua">Cần mua</option>
                                     </select>
@@ -135,6 +131,7 @@
                         <!--post style 2 end-->
 </div>
 <div class="container text-center">
+
                                 </div>
                 </div>
             </div>

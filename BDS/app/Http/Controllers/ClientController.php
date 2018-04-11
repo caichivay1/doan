@@ -1,4 +1,4 @@
-<?php
+<?php 
  
 namespace App\Http\Controllers;
 
@@ -6,38 +6,52 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\post;
 use App\province;
 use App\district;
 use App\ward;
-use App\image; 
+use App\Image; 
 use App\Admin; 
 use App\Category;
 use Alert;
+use Carbon\Carbon;
 use App\Http\Requests\PostFormRequest;
 
 class ClientController extends Controller
 {
-    public function addcustom(Request $request){
+    public function addcustom(Request $request){ 
         $model = Admin::where('email',$request->email)->first();
         if($model) dd('email exits');
         $model = new Admin();
         $model->fill($request->all());
          $tinh=province::where('provinceid',$request->province1)->first()->name;
-       $huyen=district::where('districtid',$request->district)->first()->name;
-       $xa=ward::where('wardid',$request->ward1)->first()->name;
-       $location=$xa.'-'.$huyen.'-'.$tinh;
-
+        $huyen=district::where('districtid',$request->district)->first()->name;
+        $xa=ward::where('wardid',$request->ward1)->first()->name;
+        $location=$xa.'-'.$huyen.'-'.$tinh;
             $model->province = $tinh;
             $model->district = $huyen;
             $model->ward = $xa;
             $model->address = $location;
         $cate = Category::where('is_menu',1)->get();
-
-
         $model->password =Hash::make($request->password);
+        $email = $request->email;
+        $user = $request->name;
         $model->save();
-        return redirect()->route('homepage');
+        return redirect()->route('register-mail',['mail'=>$email]);
+    }
+    public function register($email){     
+        $users = Admin::where('email',$email)->first();
+        $user = $users->name;
+        $id = $users->id;
+        $url = url('/register_success/'.$id);
+        Mail::send('mail_template.register', compact('url','user'), function ($message) use ($user,$email) {
+            $message->to($email, $user);
+            // $message->cc('kenjav96@gmail.com', 'Dũng thần dâm');
+            // $message->replyTo('thienth@fpt.edu.vn', 'Mr.Thien');
+            $message->subject('Xác nhận đăng kí tài khoản'); 
+        });
+            return redirect()->back()->with('alert','Gui thanh cong!vui long truy cap email de kiem tra.Xin cam on!');   
     }
     public function index(){
     	if(Auth::guard('admin')->check()){
@@ -100,7 +114,7 @@ class ClientController extends Controller
             elseif($request->acr ==200)
                 $a = [200,300];
             else
-                $a =[300,900];
+                $a =[300,999999900];
         // format price
             if($request->price == 01){
                 $p = [0,1];
@@ -116,17 +130,17 @@ class ClientController extends Controller
                 $lp = "Tỉ VND";
             }
             else{
-                $p = [3,4];
+                $p = [3,400000000000];
                 $lp = "Tỉ VND";
             }
             $type = $request->type;
             $land_type = $request->land_type;
             $provin = $request->province;
             $price = $request->price;
-            $acr = $request->arc;
+            $acr = $request->acr;
             $null = "Không có bài viết nào";
-             $post = post::where('type',$type)->orwhere('land_type',$land_type)->orwhere('province',$provin)
-                            ->orwhereBetween('acr', $a)->where('type_price',$lp)->whereBetween('price',$p)->get();
+            $post = post::where('type',$type)->where('land_type',$land_type)->where('province',$provin)->whereBetween('acr',$a)->where('action',1)->whereBetween('price',$p)->where('type_price',$lp)->get();
+            // $post= post::whereBetween('acr', $acr)->where('type_price',$lp)->whereBetween('price',$price)->where('type',$type)->where('land_type',$land_type)->where('province',$provin)->where('action',1)->get();
             return view('client.resuft_search',compact('post','auth','province','cate','null','type','land_type','provin','price','acr'));
 
     }
@@ -149,14 +163,15 @@ class ClientController extends Controller
         $post->delete();
         return redirect()->back();
     }
-    public function save(PostFormRequest $request){ 
-               if($request->id){
+    public function save(PostFormRequest $request){  
+        if($request->id){
             $model = post::find($request->id);
             if(!$model) return 'not-found';
         }else{
             $model = new post();
         }
         $model->fill($request->all());
+        dd($model);
 
         $remove = $request->images_delete;
         if($remove){
@@ -216,7 +231,7 @@ class ClientController extends Controller
         $auth = Auth::guard('admin')->user();
         $province = province::all();
         $a = str_replace('-', ' ', $k); 
-        $posts = post::where('type',$a)->paginate(9);
+        $posts = post::where('type',$a)->where('action',1)->paginate(9);
         $null = "Không có bài viết nào";
         return view('home.index',compact('posts','cate','province','null','auth'));
     }
@@ -234,13 +249,35 @@ class ClientController extends Controller
         return view('home.index',compact('posts','cate','province','auth')); 
     }
     public function broser1(Request $request){
-        dd($request->id);
-       $model = post::find($id);
-        if(!$model) return 'not-found';
+       $model = post::find($request->id);
+        if(!$model) return view('Admin/404');
        $model->action =$request->radio ;
-       dd($model->action);
        $model->save();
-         return redirect(route('post.manager'));
+         return redirect(route('manager_client'));
+    }
+    public function register_role($id){
+        $user = Admin::find($id);
+        if(!$user) return view('admin.404');
+        $thatDay = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at);
+        $now = Carbon::now();
+        $dif = $now->diffInHours($thatDay);       
+        if($dif >24){
+            DB::table('admins')->where('id',$id)->delete();
+            return "error! invalid token";
+        }
+        $user->role = 1;
+        $user->save();
+        return redirect()->route('client')->with('alert','Đăng kí thành công!');
+    }
+    public function validatemail(Request $request){
+        $email = $request->email;
+        $admin = Admin::where('email',$email)->first();
+        if($admin){
+           return response()->json(array("exists" => false));
+        }
+        else{
+           return response()->json(array("exists" => true),200);
+        }
     }
 
 }

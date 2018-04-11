@@ -29,7 +29,8 @@
 
 		<div class="col-md-offset-6">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
-											<button type="button" class="btn default">Cancel</button>
+											<a href="{{URL::previous()}}"><button type="button" class="btn default ">Cancel</button></a>
+		</div>
 		</div>
 	</form>
 
